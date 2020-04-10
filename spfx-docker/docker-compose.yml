@@ -23,7 +23,6 @@ services:
       - .:c:\app\spfx
     image: spfx-dev:x86-64
     stdin_open: true
-    tty: true
     build:
       context: ./x86-64
     container_name: spfx-dev

@@ -10,6 +10,6 @@ Docker images that run Azure Cli (including ARM builds).
 6. Run `docker-compose build azure-cli-arm`.
 7. Tag: `docker tag robgarrett/azure-cli:arm` (replace robgarrett with your repo name).
 8. Push: `docker push robgarrett/azure-cli:arm`.
-9. Run `docker manifest create robgarrett/azure-cli:latest robgarrett/azure-cli:arm64 robgarrett/azure-cli:amd` (replace robgarrett with your repo name).
+9. Run `docker manifest create robgarrett/azure-cli:latest robgarrett/azure-cli:amd64 robgarrett/azure-cli:arm` (replace robgarrett with your repo name).
 10. Run `docker manifest annotate robgarrett/azure-cli:latest robgarrett/azure-cli:arm --arch arm`.
 11. Push: `docker manifest push robgarrett/azure-cli:latest`.

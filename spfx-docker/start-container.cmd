@@ -1,1 +1,1 @@
-docker-compose run --service-ports spfx-dev-x86-64
+docker-compose run --service-ports --rm spfx-dev-x86-64

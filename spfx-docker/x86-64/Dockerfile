@@ -1,6 +1,5 @@
 # Get the base image.
 ARG core=mcr.microsoft.com/windows/servercore:ltsc2019
-ARG target=mcr.microsoft.com/windows/nanoserver:1809
 ARG posh=mcr.microsoft.com/powershell:nanoserver
 FROM $core as download
 
@@ -35,15 +34,11 @@ RUN [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tl
     Expand-Archive /installer/powershell.zip -DestinationPath \PowerShell
 
 # Next stage.
-FROM $target
+FROM $core
 
 # Setup target environment container.
 ENV NPM_CONFIG_LOGLEVEL error
-ENV ProgramFiles="C:\\Program Files"
-ENV LOCALAPPDATA="C:\\Users\\ContainerAdministrator\\AppData\\Local"
-ENV PSModuleAnalysisCachePath="$LOCALAPPDATA\\Microsoft\\Windows\\PowerShell\\docker\\ModuleAnalysisCache"
 ENV PSCORE="c:\\PowerShell\\pwsh.exe"
-ENV WindowsPATH="C:\\Windows\\system32;C:\\Windows"
 
 COPY --from=download /nodejs /nodejs
 COPY --from=download /git /git
@@ -56,12 +51,12 @@ USER ContainerAdministrator
 ARG SETX=/M
 RUN setx %SETX% PATH "%PATH%;C:\\nodejs;C:\\git\\cmd;C:\\git\\mingw64\\bin;C:\\git\\usr\\bin;c:\\PowerShell"
 
+# Run as user.
+USER ContainerUser
+
 # Pull down tools.
 RUN npm i -g --no-optional gulp@3 yo @microsoft/generator-sharepoint && npm cache verify
 RUN CMD gulp trust-dev-cert
-
-# Run as user.
-USER ContainerUser
 
 # Expose ports.
 EXPOSE 5432 4321 35729
