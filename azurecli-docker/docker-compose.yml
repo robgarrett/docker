@@ -1,0 +1,18 @@
+version: '3.5'
+services:
+  azure-cli-amd64:
+    image: azure-cli:amd64
+    stdin_open: true
+    tty: true
+    build:
+      context: ./AMD64
+    container_name: azure-cli
+    restart: always
+  azure-cli-arm:
+    image: azure-cli:arm
+    stdin_open: true
+    tty: true
+    build:
+      context: ./ARMv7
+    container_name: azure-cli
+    restart: always
