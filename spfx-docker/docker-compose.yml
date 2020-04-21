@@ -1,29 +1,16 @@
 version: '3.5'
 services:
-  spfx-dev-amd64:
+  spfx-dev:
     ports: 
       - 5432:5432
       - 4321:4321
       - 35729:35729
     volumes:
       - .:/usr/app/spfx
-    image: spfx-dev:amd64
+    image: spfx-dev:latest
     stdin_open: true
     tty: true
     build:
-      context: ./AMD64
-    container_name: spfx-dev
-    restart: always
-  spfx-dev-x86-64:
-    ports: 
-      - 5432:5432
-      - 4321:4321
-      - 35729:35729
-    volumes:
-      - .:c:\app\spfx
-    image: spfx-dev:x86-64
-    stdin_open: true
-    build:
-      context: ./x86-64
+      context: .
     container_name: spfx-dev
     restart: always
