@@ -1,0 +1,1 @@
+docker run -it --rm --name spfx-dev -v ${PWD}:/usr/app/spfx -p 5432:5432 -p 4321:4321 -p 35729:35729 spfx-dev
