@@ -11,5 +11,6 @@ Docker images that run Azure Cli (including ARM builds).
 7. Tag: `docker tag robgarrett/spfx-dev:x86-64` (replace robgarrett with your repo name).
 8. Push: `docker push robgarrett/spfx-dev:x86-64`.
 9. Run `docker manifest create robgarrett/spfx-dev:latest robgarrett/spfx-dev:arm64 robgarrett/spfx-dev:x86-64` (replace robgarrett with your repo name).
-10. Run `docker manifest annotate robgarrett/spfx-dev:latest robgarrett/spfx-dev:x86-64 --arch windows/x86-64`.
+10. Run `docker manifest annotate robgarrett/spfx-dev:latest robgarrett/spfx-dev:x86-64 --arch amd64 --os windows`.
+11. Run `docker manifest annotate robgarrett/spfx-dev:latest robgarrett/spfx-dev:amd64 --arch amd64 --os linux`.
 11. Push: `docker manifest push robgarrett/spfx-dev:latest`.

@@ -14,7 +14,7 @@ RUN apt-get update -y && apt-get -y upgrade
 # Pull down tools.
 ENV NPM_CONFIG_LOGLEVEL error
 RUN npm i -g --no-optional npm && \
-    npm i -g --no-optional gulp yo @microsoft/generator-sharepoint && \
+    npm i -g --no-optional gulp@3 yo @microsoft/generator-sharepoint && \
     npm cache verify
 
 # Create a user and set up volume owner.
