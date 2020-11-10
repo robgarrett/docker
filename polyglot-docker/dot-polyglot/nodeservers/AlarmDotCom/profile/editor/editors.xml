@@ -1,19 +1,15 @@
 <editors>
     <!-- Boolean -->
-    <editor id="BOOL">
+    <editor id="edtBOOL">
         <range uom="2" subset="0,1" />
     </editor>
 
     <!-- Arm Status -->
-    <!--
-    <editor id="ASTATUS">
+    <editor id="edtASTATUS">
         <range uom="25" subset="-1,0-2" nls="ASTATUS" />
     <editor>
-    <editor id="ASTATUSC">
-        <range uom="25" subset="0-2" nls="ASTATUS" />
-    <editor>
-    <editor id="ALARM">
+    <editor id="edtALARM">
         <range uom="25" subset="-1,0-6" nls="ALARM" />
     <editor>
-    -->
+
 </editors>

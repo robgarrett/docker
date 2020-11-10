@@ -6,6 +6,8 @@ const nodeDefId = "CONTROLLER";
 module.exports = function(Polyglot) {
     const logger = Polyglot.logger;
 
+    const AreaNode = require("./AreaNode.js")(Polyglot);
+
     class Controller extends Polyglot.Node {
         // polyInterface: handle to the interface.
         // address: Node address, without n999_ prefix.

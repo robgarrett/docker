@@ -15,6 +15,7 @@ const lock = new AsyncLock({ timeout: 500 });
 const controllerAddress = "controller";
 
 const ControllerNode = require("./Nodes/ControllerNode.js")(Polyglot);
+const AreaNode = require("./Nodes/AreaNode.js")(Polyglot);
 
 const usernameParam = "Username";
 const pwParam = "Password";
@@ -28,7 +29,7 @@ const defaultParams = {
 logger.info("Starting Node Server.");
 
 // Create an instance of the Polyglot interface - pass all nodes.
-const poly = new Polyglot.Interface([ControllerNode]);
+const poly = new Polyglot.Interface([ControllerNode, AreaNode]);
 
 // Connected to MQTT, but config has not arrived yet.
 poly.on("mqttConnected", function () {
@@ -55,12 +56,20 @@ poly.on("config", function (config) {
         // Setup the config fields in the UI.
         initializeCustomParams(config.customParams);
 
+        // Create a controller if we have no nodes.
         if (!nodesCount) {
             try {
                 logger.info("Auto creating controller.");
                 callAsync(autoCreateController());
             } catch (err) {
                 logger.error("Error while creating controller:", err);
+            }
+        } else {
+            try {
+                logger.info("Auto delete controller.");
+                callAsync(autoDeleteNode(config.nodes[Object.keys(config.nodes)[0]]));
+            } catch (err) {
+                logger.error("Error while delete controller:", err);
             }
         }
         if (config.newParamsDetected) {
@@ -70,8 +79,8 @@ poly.on("config", function (config) {
 });
 
 // User just completed OAUTH (PGC only).
-poly.on("oauth", function () {
-    logger.info("Received oAuth code");
+poly.on("oauth", function (oAuth) {
+    logger.info("Received oAuth code %s", oAuth.code);
 });
 
 poly.on("poll", function (longPoll) {
@@ -119,6 +128,14 @@ async function autoCreateController() {
         await poly.addNode(new ControllerNode(poly, controllerAddress, controllerAddress, "AlarmDotCom Controller"));
     } catch (err) {
         logger.error("Error creating controller node:", err);
+    }
+}
+
+async function autoDeleteNode(node) {
+    try {
+        await poly.delNode(node);
+    } catch (err) {
+        logger.error("Error deleting node:", err);
     }
 }
 

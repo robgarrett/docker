@@ -16,6 +16,8 @@ RUN apk add --no-cache --virtual .build-deps linux-headers build-base && \
     npm install && \
     apk del .build-deps
 
+RUN apk add --no-cache bash
+
 VOLUME /root/.polyglot
 VOLUME /usr/lib/python3.6/site-packages
 

@@ -3,7 +3,7 @@
     <nodeDef id="CONTROLLER" nls="CONTROLLER">
         <editors />
         <sts>
-            <st id="ST" editor="BOOL"/>
+            <st id="ST" editor="edtBOOL"/>
         </sts>
         <cmds>
             <sends>
@@ -18,12 +18,13 @@
         </cmds>
     </nodeDef>
 
-    <!--
     <nodeDef id="AREA" nls="AREA">
         <editors />
         <sts>
-            <st id="ST" editor="ALARM" />
-            <ST id="GV0" editor="ASTATUS" />
+            <!-- Alarm status -->
+            <st id="ST" editor="edtALARM" />
+            <!-- Arm status -->
+            <st id="GV0" editor="edtASTATUS" />
         </sts>
         <cmds>
             <sends>
@@ -31,11 +32,12 @@
                 <cmd id="DOFF" />
             </sends>
             <accepts>
+                <!-- Set the arming status -->
                 <cmd id="SET_ARMED_STATUS">
-                    <p id="" editor="ASTATUSC" init="GV0" />
+                    <p id="" editor="edtASTATUS" init="GV0" />
                 </cmd>
             </accepts>
         </cmds>
     </nodeDef>
--->
+
 </nodeDefs>

@@ -1,18 +1,16 @@
 # Controller
 ND-CONTROLLER-NAME = ALARM.COM Controller
 ND-CONTROLLER-ICON = GenericCtl
+ST-CONTROLLER-ST-NAME = Controller Online
 CMD-CONTROLLER-QUERY-NAME = Query
 CMD-CONTROLLER-DISCOVER-NAME = Re-Discover
 CMD-CONTROLLER-UPDATE_PROFILE-NAME = Update Profile
-ST-CONTROLLER-ST-NAME = NodeServer Online
 
 # Area
 ND-AREA-NAME = Area Node
 ND-AREA-ICON = Input
 ST-AREA-ST-NAME = Alarm Status
 ST-AREA-GV0-NAME = Armed Status
-CMD-AREA-ST-NAME = Alarm Status
-CMD-AREA-GV0-NAME = Set Armed Status
 CMD-AREA-SET_ARMED_STATUS-NAME = Set Armed Status
 
 # ST = alarm_state
