@@ -1,0 +1,20 @@
+{
+  "name": "alarmdotcomserver",
+  "version": "1.0.0",
+  "description": "Node Server for Universal Devices Polyglot to communicate with Alarm.com.",
+  "main": "nodeserver.js",
+  "scripts": {
+    "linter": "eslint --ignore-path .gitignore ."
+  },
+  "author": "Rob Garrett",
+  "license": "MIT",
+  "dependencies": {
+    "async-lock": "^1.2.4",
+    "pgc_interface": "^1.0.13",
+    "polyinterface": "^1.2.3"
+  },
+  "devDependencies": {
+    "eslint": "^7.13.0",
+    "eslint-config-strongloop": "^2.1.0"
+  }
+}
