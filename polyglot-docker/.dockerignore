@@ -1,7 +1,2 @@
-dot-polyglot/**/*
-!dot-polyglot/.env-sample
-
-
-
-
-
+**/logs/*
+**/node_modules/*

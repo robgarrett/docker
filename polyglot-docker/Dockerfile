@@ -16,10 +16,10 @@ RUN apk add --no-cache --virtual .build-deps linux-headers build-base && \
     npm install && \
     apk del .build-deps
 
-RUN apk add --no-cache bash
+#COPY config/.env /root/.polyglot
 
-VOLUME /root/.polyglot
+VOLUME /root/.polyglot/nodeservers
 VOLUME /usr/lib/python3.6/site-packages
 
-# Run Polyglot
-CMD npm start
+# Execute bash
+ENTRYPOINT ["/bin/bash"]

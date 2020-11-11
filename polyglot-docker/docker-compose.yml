@@ -14,7 +14,7 @@ services:
         ports:
          - "3000:3000"
         volumes:
-         - ./dot-polyglot:/root/.polyglot
+         - ./nodeservers:/root/.polyglot/nodeservers
          - polyglot-pkgs:/usr/lib/python3.6/site-packages
         links:
          - mongo
@@ -25,7 +25,7 @@ services:
          - PYTHON3=/usr/bin/python3
          - NODE_ENV=development
          - USEDOCKER=true
-        restart: always
+        restart: unless-stopped
         
 volumes:
   polyglot-pkgs:

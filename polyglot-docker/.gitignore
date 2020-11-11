@@ -1,6 +1,3 @@
-dot-polyglot/**/*
-!dot-polyglot/.env-sample
-!dot-polyglot/nodeservers/
-!dot-polyglot/nodeservers/**/*
 **/node_modules/*
 **/logs/*
+config/.env
