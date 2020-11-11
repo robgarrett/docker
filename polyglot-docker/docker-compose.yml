@@ -14,6 +14,7 @@ services:
         ports:
          - "3000:3000"
         volumes:
+         - ./config:/root/.polyglot
          - ./nodeservers:/root/.polyglot/nodeservers
          - polyglot-pkgs:/usr/lib/python3.6/site-packages
         links:

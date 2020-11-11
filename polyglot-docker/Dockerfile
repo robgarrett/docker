@@ -16,10 +16,11 @@ RUN apk add --no-cache --virtual .build-deps linux-headers build-base && \
     npm install && \
     apk del .build-deps
 
-#COPY config/.env /root/.polyglot
-
 VOLUME /root/.polyglot/nodeservers
 VOLUME /usr/lib/python3.6/site-packages
+
+# Set up the bashrc.
+RUN echo "PS1='\w\## '" >> /root/.bashrc
 
 # Execute bash
 ENTRYPOINT ["/bin/bash"]
