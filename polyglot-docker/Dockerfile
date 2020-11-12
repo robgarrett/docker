@@ -19,8 +19,13 @@ RUN apk add --no-cache --virtual .build-deps linux-headers build-base && \
 VOLUME /root/.polyglot/nodeservers
 VOLUME /usr/lib/python3.6/site-packages
 
+COPY git-prompt.sh /root
+
 # Set up the bashrc.
-RUN echo "PS1='\w\## '" >> /root/.bashrc
+RUN echo "source ~/git-prompt.sh" >> /root/.bashrc
+RUN echo "cd /root/.polyglot" >> /root/.bashrc
+
+ENV PROMPT_COMMAND='__posh_git_ps1 "\u@\h:\w " "\\\$ ";'
 
 # Execute bash
 ENTRYPOINT ["/bin/bash"]

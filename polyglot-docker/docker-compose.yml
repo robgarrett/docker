@@ -13,6 +13,7 @@ services:
         container_name: polyglotv2
         ports:
          - "3000:3000"
+         - "9229:9229"
         volumes:
          - ./config:/root/.polyglot
          - ./nodeservers:/root/.polyglot/nodeservers

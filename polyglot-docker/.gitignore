@@ -1,4 +1,7 @@
 **/node_modules/*
 **/logs/*
-config/*
-!config/.env.sample
+config/log
+config/ssl
+config/nodeservers
+config/*.pid
+
