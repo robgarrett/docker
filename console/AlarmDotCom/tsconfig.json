@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "moduleResolution": "node",
+        "target": "es6",
+        "module": "commonjs",
+        "removeComments": true,
+        "outDir": "lib",
+        "sourceMap": true,
+        "lib": [
+            "es5",
+            "ES2015"
+        ]
+    }
+}
