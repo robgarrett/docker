@@ -4,7 +4,7 @@ EXPOSE 3000
 WORKDIR /opt/polyglot-v2/
 
 RUN apk add --no-cache --virtual .build-deps linux-headers build-base && \
-    apk add --no-cache python3 python3-dev py3-pip bash git ca-certificates wget tzdata openssl && \
+    apk add --no-cache python3 python3-dev py3-pip git ca-certificates wget tzdata openssl bash bash-completion && \
     python3 -m ensurepip && \
     rm -r /usr/lib/python*/ensurepip && \
     pip3 install --upgrade pip setuptools && \
@@ -19,13 +19,11 @@ RUN apk add --no-cache --virtual .build-deps linux-headers build-base && \
 VOLUME /root/.polyglot/nodeservers
 VOLUME /usr/lib/python3.6/site-packages
 
-COPY git-prompt.sh /root
-
 # Set up the bashrc.
-RUN echo "source ~/git-prompt.sh" >> /root/.bashrc
 RUN echo "cd /root/.polyglot" >> /root/.bashrc
 
-ENV PROMPT_COMMAND='__posh_git_ps1 "\u@\h:\w " "\\\$ ";'
+# Set default shell
+ENV SHELL "/bin/bash"
 
 # Execute bash
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["/bin/bash", "--login"]
