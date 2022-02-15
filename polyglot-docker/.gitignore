@@ -1,7 +1,0 @@
-**/node_modules/*
-**/logs/*
-config/log
-config/ssl
-config/nodeservers
-config/*.pid
-
