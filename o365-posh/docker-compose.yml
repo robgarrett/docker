@@ -1,0 +1,12 @@
+version: '3.5'
+services:
+  o365-posh:
+    image: o365-posh:latest
+    stdin_open: true
+    tty: true
+    build:
+      context: .
+      args:
+        MYUSERNAME: O365User
+    container_name: o365-posh
+    restart: always
