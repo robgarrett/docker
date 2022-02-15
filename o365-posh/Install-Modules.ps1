@@ -8,9 +8,11 @@ if (!(($psversiontable.Values).Major[0] -eq 5 -and ($psversiontable.Values).Mino
 
 Function _installModule {
     Param([Parameter(Mandatory = $true)][string]$moduleName);
+    Write-Host "Installing module $moduleName";
     Install-Module -Name $moduleName -Scope AllUsers -Force;
 }
 
+Write-Host "Installing package provider";
 Install-PackageProvider -Name NuGet -Force;
 @(
     "AzureADPreview", 

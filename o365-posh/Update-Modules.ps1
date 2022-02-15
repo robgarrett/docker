@@ -7,8 +7,15 @@ if (!(($psversiontable.Values).Major[0] -eq 5 -and ($psversiontable.Values).Mino
     exit
 }
 
-Update-Module AzureADPreview -Force;
-Update-Module ExchangeOnlineManagement -Force;
-Update-Module MicrosoftTeams -Force;
-Update-Module Microsoft.Online.SharePoint.PowerShell -Force;
-Update-Module PnP.PowerShell -Force;
+Function _updateModule {
+    Param([Parameter(Mandatory = $true)][string]$moduleName);
+    Write-Host "Updating module $moduleName";
+    Update-Module -Name $moduleName -Force;
+}
+
+@(
+    "AzureADPreview", 
+    "ExchangeOnlineManagement",
+    "MicrosoftTeams",
+    "Microsoft.Online.SharePoint.PowerShell",
+    "PnP.PowerShell") | ForEach-Object { _updateModule -moduleName $_; }
