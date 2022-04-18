@@ -1,5 +1,5 @@
 # Base Image.
-FROM debian:stretch
+FROM mcr.microsoft.com/dotnet/sdk:3.1-bullseye
 
 # Pull down Azure Cli images.
 RUN apt-get update && apt-get install -qqy curl apt-transport-https lsb-release gpg jq git
