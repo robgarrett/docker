@@ -1,0 +1,11 @@
+version: '3.5'
+services:
+  azuredev-amd64:
+    image: azuredev:amd64
+    stdin_open: true
+    tty: true
+    build:
+      context: .
+    container_name: azuredev
+    restart: always
+  
