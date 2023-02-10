@@ -1,5 +1,5 @@
 # Base Image.
-FROM mcr.microsoft.com/dotnet/sdk:3.1-bullseye
+FROM mcr.microsoft.com/dotnet/sdk:latest
 
 # Pull down Azure Cli images.
 RUN apt-get update && apt-get install -qqy curl apt-transport-https lsb-release gpg jq git
