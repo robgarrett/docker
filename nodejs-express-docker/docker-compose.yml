@@ -1,0 +1,11 @@
+version: '3.5'
+services:
+  node-express-amd64:
+    image: node-express:amd64
+    stdin_open: true
+    tty: true
+    build:
+      context: .
+    container_name: node-express
+    restart: always
+  
