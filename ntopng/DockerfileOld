@@ -1,0 +1,19 @@
+FROM ubuntu:22.04 
+MAINTAINER Rob Garrett <rob@robgarrett.com> 
+
+ENV LANG C.UTF-8
+ENV TZ=America/New_York
+ARG DEBIAN_FRONTEND=noninteractive 
+RUN \ 
+  apt-get update \ 
+  && apt-get install -y -q wget lsb-release gnupg \ 
+  && cd /tmp \ 
+  && wget --quiet https://packages.ntop.org/apt-stable/22.04/all/apt-ntop-stable.deb \ 
+  && dpkg -i apt-ntop-stable.deb \ 
+  && apt-get update \ 
+  && apt-get install -y -q ntopng n2n \ 
+  && apt-get clean \ 
+  && rm -rf /tmp/* \ 
+  && rm -rf /var/tmp/* \
+  && rm -rf /var/lib/apt/lists/*
+

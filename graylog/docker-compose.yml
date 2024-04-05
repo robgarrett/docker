@@ -1,5 +1,3 @@
-version: "3.8"
-
 # For DataNode setup, graylog starts with a preflight UI, this is a change from just using OpenSearch/Elasticsearch.
 # Please take a look at the README at the top of this repo or the regular docs for more info.
 
@@ -9,6 +7,8 @@ services:
     volumes:
       - "mongodb_data:/data/db"
     restart: "always"
+    networks:
+      - net
 
   # For DataNode setup, graylog starts with a preflight UI, this is a change from just using OpenSearch/Elasticsearch.
   # Please take a look at the README at the top of this repo or the regular docs for more info.
@@ -34,6 +34,8 @@ services:
     volumes:
       - "graylog-datanode:/var/lib/graylog-datanode"
     restart: "always"
+    networks:
+      - net
 
   graylog:
     hostname: "server"
@@ -75,9 +77,15 @@ services:
       - "graylog_journal:/usr/share/graylog/data/journal"
     restart: "always"
     #restart: "on-failure"
+    networks:
+      - net
 
 volumes:
   mongodb_data:
   graylog-datanode:
   graylog_data:
   graylog_journal:
+
+networks:
+  net:
+

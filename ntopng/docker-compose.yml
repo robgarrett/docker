@@ -1,9 +1,47 @@
-services:
-  ntopng:
-    container_name: "ntopng"
-    command: --community
-    image: ntop/ntopng:stable
+services: 
+  redis:
+    container_name: "redis" 
+    image: "redis:alpine"
     restart: always
+    networks:
+      net:
+        ipv4_address: 10.5.0.10
+
+  flowd:
+    container_name: "flowd"
+    image: "synfinatic/netflow2ng:latest"
+    command: ['--log-level', 'trace']
+    restart: always
+    networks:
+      net:
+        ipv4_address: 10.5.0.11
     ports:
-      - "3000:3000/tcp"
+      - 5556:5556/tcp
+      - 8089:8080/tcp
+      - 2055:2055/udp
+
+  ntopng:
+    command: ['-i', 'tcp://10.5.0.11:5556', '--redis', 'redis', '--community']
+    container_name: "ntopng" 
+    image: "ntopng_docker:latest"
+    ports:
+     - "3000:3000"
+    volumes:
+     - "/srv/docker/ntopng/data:/var/lib/ntopng" 
+    depends_on: 
+     - flowd
+     - redis
+    restart: always
+    networks:
+      net:
+        ipv4_address: 10.5.0.12
+
+networks:
+  net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16
+          gateway: 10.5.0.1
+
 
