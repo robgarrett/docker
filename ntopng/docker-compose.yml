@@ -10,7 +10,7 @@ services:
   flowd:
     container_name: "flowd"
     image: "synfinatic/netflow2ng:latest"
-    command: ['--log-level', 'trace']
+    command: ['--log-level', 'trace', '-a', '10.5.0.11:2055', '-z', 'tcp://10.5.0.11:5556']
     restart: always
     networks:
       net:
@@ -21,9 +21,9 @@ services:
       - 2055:2055/udp
 
   ntopng:
-    command: ['-i', 'tcp://10.5.0.11:5556', '--redis', 'redis', '--community']
+    command: ['-i', 'tcp://10.5.0.11:5556', '--redis', 'redis', '--community', '--verbose', '5']
     container_name: "ntopng" 
-    image: "ntopng_docker:latest"
+    image: "ntop/ntopng:stable"
     ports:
      - "3000:3000"
     volumes:
