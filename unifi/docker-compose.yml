@@ -1,20 +1,40 @@
 services:
 
+  log:
+    container_name: "unifi-log"
+    depends_on:
+      - unifi
+    image: bash
+    command: bash -c 'tail -F /unifi/log/*.log'
+    restart: always
+    volumes:
+      - /var/lib/unifi/log:/unifi/log
+
   unifi:
     container_name: "unifi"
     image: jacobalberty/unifi:latest
     volumes:
-      - /var/lib/unifi:/var/lib/unifi
+      - /var/lib/unifi:/unifi/data
+      - /var/lib/unifi/log:/unifi/log
+      - /var/lib/unifi/cert:/unifi/cert
     restart: always
     networks:
       - net
+    init: true
+    sysctls:
+      net.ipv4.ip_unprivileged_port_start: 0
+    user: unifi
+    environment:
+      TZ: "America/New_York"
+      LOTSOFDEVICES: true
     ports:
       - "8080:8080/tcp"
-      - "8081:8081/tcp"
       - "8443:8443/tcp"
       - "8880:8880/tcp"
       - "8843:8843/tcp"
       - "3478:3478/udp"
+      - "10001:10001/udp"
+      - "6789:6789/tcp"
 
 networks:
   net:
