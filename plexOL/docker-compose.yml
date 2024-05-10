@@ -1,8 +1,9 @@
-plexol:
-  container_name: "plexol"
-  image: meisnate12/plex-meta-manager 
-  command: --run
-  volumes:
-    - /home/rgarrett/plex-meta-manager/config:/config:rw
-  restart: never
+services:
+  plexol:
+    container_name: "plexol"
+    image: kometateam/kometa 
+    command: --run
+    volumes:
+      - /home/rgarrett/kometa/config:/config:rw
+    restart: always
 
