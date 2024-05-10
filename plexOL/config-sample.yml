@@ -1,0 +1,86 @@
+## This file is a sample, rename to config.yml and update the docker-compose.yml volume.
+libraries:
+  Movies:
+    schedule: weekly(sunday)
+    metadata_files:
+    - default: basic
+    - default: imdb
+    overlay_files:
+    - remove_overlays: false
+    - default: ribbon
+    - default: content_rating_us_movie
+    - default: resolution
+    - default: video_format
+  TV Shows:
+    schedule: daily
+    overlay_files:
+    - remove_overlays: false
+    - default: episode_info
+    - default: resolution
+    - default: video_format
+settings:
+  cache: true
+  cache_expiration: 60
+  asset_directory: config/assets
+  asset_folders: true
+  asset_depth: 0
+  create_asset_folders: false
+  prioritize_assets: false
+  dimensional_asset_rename: false
+  download_url_assets: false
+  show_missing_season_assets: false
+  show_missing_episode_assets: false
+  show_asset_not_needed: true
+  sync_mode: append
+  minimum_items: 1
+  default_collection_order:
+  delete_below_minimum: true
+  delete_not_scheduled: false
+  run_again_delay: 2
+  missing_only_released: false
+  only_filter_missing: false
+  show_unmanaged: true
+  show_unconfigured: true
+  show_filtered: false
+  show_options: false
+  show_missing: true
+  show_missing_assets: true
+  save_report: false
+  tvdb_language: eng
+  ignore_ids:
+  ignore_imdb_ids:
+  item_refresh_delay: 0
+  playlist_sync_to_user: all
+  playlist_exclude_users:
+  playlist_report: false
+  verify_ssl: true
+  custom_repo:
+  check_nightly: false
+  run_order:
+  - operations
+  - metadata
+  - collections
+  - overlays
+  overlay_artwork_filetype: jpg
+  overlay_artwork_quality:
+webhooks:
+  error:
+  version:
+  run_start:
+  run_end:
+  changes:
+  delete:
+plex:
+  url: http://plex-server:32400
+  token: PlexToken
+  timeout: 60
+  clean_bundles: false
+  empty_trash: false
+  optimize: false
+  db_cache:
+  verify_ssl:
+tmdb:
+  apikey: ApiKey
+  language: en
+  cache_expiration: 60
+  region:

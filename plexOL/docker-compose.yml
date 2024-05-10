@@ -2,7 +2,9 @@ services:
   plexol:
     container_name: "plexol"
     image: kometateam/kometa 
-    command: --run
+    #command: --run
+    environment:
+      - TZ=America/New_York
     volumes:
       - /home/rgarrett/kometa/config:/config:rw
     restart: always
