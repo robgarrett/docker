@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+    maintainerr:
+        image: ghcr.io/jorenn92/maintainerr:latest 
+        container_name: maintainerr
+        user: 1000:1000
+        volumes:
+          - type: bind
+            source: /home/rgarrett/Maintainerr
+            target: /opt/data
+        environment:
+          - TZ=America/New_York
+#      - DEBUG=true # uncomment to enable debug logs
+        ports:
+          - 6246:6246 
+        restart: unless-stopped
