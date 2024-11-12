@@ -1,0 +1,14 @@
+services:
+  albyhub:
+    platform: linux/amd64
+    container_name: albyhub
+    image: ghcr.io/getalby/hub:latest
+    volumes:
+      - /opt/albyhub-data:/data
+    ports:
+      - "6060:8080"
+    environment:
+      - WORK_DIR=/data/albyhub
+      - LOG_EVENTS=true
+    restart: always
+
